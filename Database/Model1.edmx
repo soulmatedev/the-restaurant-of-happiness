@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RestarauntHModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Protein" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Fat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Carbohydrate" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuIngredient">
+          <Key>
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="IngredientID" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__MenuIngre__Ingre__4AB81AF0">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="MenuIngredient" Type="Self.MenuIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuIngre__MenuI__49C3F6B7">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuIngredient" Type="Self.MenuIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuIngredient">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RestarauntHModelContainer">
+          <EntitySet Name="Ingredient" EntityType="Self.Ingredient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuIngredient" EntityType="Self.MenuIngredient" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MenuIngre__Ingre__4AB81AF0" Association="Self.FK__MenuIngre__Ingre__4AB81AF0">
+            <End Role="Ingredient" EntitySet="Ingredient" />
+            <End Role="MenuIngredient" EntitySet="MenuIngredient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuIngre__MenuI__49C3F6B7" Association="Self.FK__MenuIngre__MenuI__49C3F6B7">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuIngredient" EntitySet="MenuIngredient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestarauntHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ingredient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Protein" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Fat" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Carbohydrate" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="MenuIngredients" Relationship="Self.FK__MenuIngre__Ingre__4AB81AF0" FromRole="Ingredient" ToRole="MenuIngredient" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MenuIngredients" Relationship="Self.FK__MenuIngre__MenuI__49C3F6B7" FromRole="Menu" ToRole="MenuIngredient" />
+        </EntityType>
+        <EntityType Name="MenuIngredient">
+          <Key>
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="IngredientID" />
+          </Key>
+          <Property Name="MenuID" Type="Int32" Nullable="false" />
+          <Property Name="IngredientID" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK__MenuIngre__Ingre__4AB81AF0" FromRole="MenuIngredient" ToRole="Ingredient" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK__MenuIngre__MenuI__49C3F6B7" FromRole="MenuIngredient" ToRole="Menu" />
+        </EntityType>
+        <Association Name="FK__MenuIngre__Ingre__4AB81AF0">
+          <End Role="Ingredient" Type="Self.Ingredient" Multiplicity="1" />
+          <End Role="MenuIngredient" Type="Self.MenuIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ingredient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuIngredient">
+              <PropertyRef Name="IngredientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuIngre__MenuI__49C3F6B7">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="MenuIngredient" Type="Self.MenuIngredient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MenuIngredient">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RestarauntHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="MenuIngredients" EntityType="Self.MenuIngredient" />
+          <AssociationSet Name="FK__MenuIngre__Ingre__4AB81AF0" Association="Self.FK__MenuIngre__Ingre__4AB81AF0">
+            <End Role="Ingredient" EntitySet="Ingredients" />
+            <End Role="MenuIngredient" EntitySet="MenuIngredients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuIngre__MenuI__49C3F6B7" Association="Self.FK__MenuIngre__MenuI__49C3F6B7">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="MenuIngredient" EntitySet="MenuIngredients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RestarauntHModelContainer" CdmEntityContainer="RestarauntHEntities">
+          <EntitySetMapping Name="Ingredients">
+            <EntityTypeMapping TypeName="RestarauntHModel.Ingredient">
+              <MappingFragment StoreEntitySet="Ingredient">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Protein" ColumnName="Protein" />
+                <ScalarProperty Name="Fat" ColumnName="Fat" />
+                <ScalarProperty Name="Carbohydrate" ColumnName="Carbohydrate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="RestarauntHModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuIngredients">
+            <EntityTypeMapping TypeName="RestarauntHModel.MenuIngredient">
+              <MappingFragment StoreEntitySet="MenuIngredient">
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="IngredientID" ColumnName="IngredientID" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
