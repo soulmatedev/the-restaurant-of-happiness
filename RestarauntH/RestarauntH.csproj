@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Windows\IngredientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Windows\MenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +81,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GUI\PageController.cs" />
+    <Compile Include="GUI\Windows\IngredientWindow.xaml.cs">
+      <DependentUpon>IngredientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Windows\MenuWindow.xaml.cs">
       <DependentUpon>MenuWindow.xaml</DependentUpon>
     </Compile>

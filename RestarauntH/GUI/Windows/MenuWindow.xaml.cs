@@ -15,14 +15,16 @@ using System.Windows.Shapes;
 
 namespace RestarauntH.GUI.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для MenuWindow.xaml
-    /// </summary>
     public partial class MenuWindow : Page
     {
         public MenuWindow()
         {
             InitializeComponent();
+        }
+
+        private void NavigateToIngredient(object sender, RoutedEventArgs e)
+        {
+             NavigationService.Navigate(PageController.IngredientWindow);
         }
     }
 }
