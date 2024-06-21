@@ -21,7 +21,7 @@ namespace RestarauntH
         public MainWindow()
         {
             InitializeComponent();
-            MenuWindow.Navigate(PageController.MenuWindow);
+            MenuView.Navigate(PageController.MenuView);
         }
     }
 }

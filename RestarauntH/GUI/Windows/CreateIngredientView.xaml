@@ -1,0 +1,43 @@
+﻿<Window x:Class="RestarauntH.GUI.Windows.CreateIngredientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestarauntH.GUI.Windows"
+        mc:Ignorable="d"
+        Title="CreateIngredientView" Height="420" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="14 14 14 0">
+            <TextBlock Text="Создание ингредиента" Margin="14" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+            <TextBlock Text="Название" Margin="0"/>
+            <TextBox Name="nameValue" Margin="0 0 0 24"/>
+
+            <TextBlock Text="Белки" Margin="0"/>
+            <TextBox Name="proteinValue" Margin="0 0 0 24"/>
+
+            <TextBlock Text="Жиры" Margin="0"/>
+            <TextBox Name="fatValue" Margin="0 0 0 24"/>
+
+            <TextBlock Text="Углеводы" Margin="0"/>
+            <TextBox Name="carbohydrateValue" Margin="0 0 0 24"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="Отменить" Height="34" Click="Cancel_Clicked"/>
+                <Button Grid.Column="1" Content="Создать" Height="34" Click="CreateIngredient_Clicked"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

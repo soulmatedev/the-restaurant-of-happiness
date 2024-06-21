@@ -1,5 +1,5 @@
 ﻿using Database;
-using RestarauntH.GUI.Windows;
+using RestarauntH.GUI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,31 +30,45 @@ namespace RestarauntH.GUI
             }
         }
 
-        private static MenuWindow menuWindow;
-        public static MenuWindow MenuWindow
+        private static MenuView menuView;
+        public static MenuView MenuView
 
         {
             get
             {
-                if (menuWindow == null)
+                if (menuView == null)
                 {
-                    menuWindow = new MenuWindow();
+                    menuView = new MenuView();
                 }
-                return menuWindow;
+                return menuView;
             }
         }
 
-        private static IngredientWindow ingredientWindow;
-        public static IngredientWindow IngredientWindow
+        private static RecipeView recipeView;
+        public static RecipeView RecipeView
 
         {
             get
             {
-                if (ingredientWindow == null)
+                if (recipeView == null)
                 {
-                    ingredientWindow = new IngredientWindow(Database);
+                    recipeView = new RecipeView(Database);
                 }
-                return ingredientWindow;
+                return recipeView;
+            }
+        }
+
+        private static IngredientView ingredientView;
+        public static IngredientView IngredientView
+
+        {
+            get
+            {
+                if (ingredientView == null)
+                {
+                    ingredientView = new IngredientView(Database);
+                }
+                return ingredientView;
             }
         }
     }

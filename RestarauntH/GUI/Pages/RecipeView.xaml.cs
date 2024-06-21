@@ -1,12 +1,24 @@
 ﻿using Database;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace RestarauntH.GUI.Windows
+namespace RestarauntH.GUI.Pages
 {
-    public partial class IngredientWindow : Page, INotifyPropertyChanged
+    public partial class RecipeView : Page, INotifyPropertyChanged
     {
         private readonly RestarauntHEntities database;
         public ObservableCollection<Ingredient> Ingredients { get; set; }
@@ -21,7 +33,7 @@ namespace RestarauntH.GUI.Windows
             }
         }
 
-        public IngredientWindow(RestarauntHEntities entities)
+        public RecipeView(RestarauntHEntities entities)
         {
             InitializeComponent();
             database = entities;
@@ -35,7 +47,7 @@ namespace RestarauntH.GUI.Windows
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void GoBack(object sender, System.Windows.RoutedEventArgs e)
+        private void GoBack(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }

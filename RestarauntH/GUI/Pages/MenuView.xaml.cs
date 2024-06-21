@@ -13,18 +13,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RestarauntH.GUI.Windows
+namespace RestarauntH.GUI.Pages
 {
-    public partial class MenuWindow : Page
+    public partial class MenuView : Page
     {
-        public MenuWindow()
+        public MenuView()
         {
             InitializeComponent();
         }
 
+        private void NavigateToRecipe(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageController.RecipeView);
+        }
+
         private void NavigateToIngredient(object sender, RoutedEventArgs e)
         {
-             NavigationService.Navigate(PageController.IngredientWindow);
+            NavigationService.Navigate(PageController.IngredientView);
         }
     }
 }
